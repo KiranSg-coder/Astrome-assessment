@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Boxs</title>
+    <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+    <div class="main">
+        <div class="box">
+            <div class="one inside"></div>
+            <div class="two inside"></div>
+            <div class="three inside"></div>
+            <div class="four inside"></div>
+            <div class="five inside"></div>
+        </div>
+        <div class="buttons">
+            <button id="start">Start</button>
+            <button id="reset">Reset</button>
+            <button id="stop">Stop</button>
+        </div>
+    </div>
+    <script src="./sscript.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        .main {
+            width: 100%;
+            height: 100%;
+            background-color: #fbeaff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .box {
+            width: 1200px;
+            height: 500px;
+            border: 8px solid #000;
+            background-color: #000;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .inside {
+            height: 100%;
+            width: calc(100% / 5);
+            transition: height 0.5s ease-in-out;
+        }
+
+        .one {
+            background-color: #845ec2;
+        }
+
+        .two {
+            background-color: #d65db1;
+        }
+
+        .three {
+            background-color: #ff6f91;
+        }
+
+        .four {
+            background-color: #ff9671;
+        }
+
+        .five {
+            background-color: #ffc75f;
+        }
+
+        .buttons {
+            margin-top: 4rem;
+        }
+
+        button {
+            padding: 0.4rem 1.2rem;
+            margin: 0 1.2rem;
+            cursor: pointer;
+        }
+
+        #start {
+            background-color: green;
+        }
+
+        #reset {
+            background-color: #845ec2;
+        }
+
+        #stop {
+            background-color: red;
+        }
+    </style>
+</body>
+
+</html>
+<script>
+    const one = document.querySelector('.one');
+    const two = document.querySelector('.two');
+    const three = document.querySelector('.three');
+    const four = document.querySelector('.four');
+    const five = document.querySelector('.five');
+
+    const start = document.querySelector('#start');
+    const reset = document.querySelector('#reset');
+    const stopbut = document.querySelector('#stop');
+
+    let changeSize;
+
+    start.addEventListener('click', () => {
+        autoplay();
+    });
+
+    reset.addEventListener('click', () => {
+        clearInterval(changeSize);
+        one.style.height = '100%';
+        two.style.height = '100%';
+        three.style.height = '100%';
+        four.style.height = '100%';
+        five.style.height = '100%';
+    });
+
+    stopbut.addEventListener('click', () => {
+        clearInterval(changeSize);
+    });
+
+    function randomNumber() {
+        let randomNum = Math.floor(Math.random() * 101);
+        return randomNum;
+    }
+
+    function autoplay() {
+        changeSize = setInterval(() => {
+            one.style.height = `${randomNumber()}%`;
+            two.style.height = `${randomNumber()}%`;
+            three.style.height = `${randomNumber()}%`;
+            four.style.height = `${randomNumber()}%`;
+            five.style.height = `${randomNumber()}%`;
+        }, 800);
+    }
+</script>
